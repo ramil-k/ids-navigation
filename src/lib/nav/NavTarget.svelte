@@ -40,8 +40,8 @@
     }
 
     .nav-target {
-        margin-top: calc(0px - var(--ids-nav-margin-top));
-        padding-top: var(--ids-nav-margin-top);
+        margin-top: calc(0px - var(--ids-nav-margin-top, 3em));
+        padding-top: var(--ids-nav-margin-top, 3em);
     }
 
     .nav-target:active {
