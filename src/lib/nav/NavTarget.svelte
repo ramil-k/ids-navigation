@@ -26,13 +26,19 @@
   });
 </script>
 
-<svelte:window on:resize={updateTopPosition} />
+<svelte:window on:resize={updateTopPosition}/>
 
-<div bind:this={target} class={`nav-target ${className}`} {id} style={`--ids-nav-margin-top: 3em; ${style}`}>
+<div bind:this={target} class={`nav-target ${className}`} {id} {style}>
     <slot></slot>
 </div>
 
 <style>
+    @property --ids-nav-margin-top {
+        initial-value: 3em;
+        inherits: true;
+        syntax: "<length>";
+    }
+
     .nav-target {
         margin-top: calc(0px - var(--ids-nav-margin-top));
         padding-top: var(--ids-nav-margin-top);
