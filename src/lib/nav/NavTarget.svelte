@@ -28,14 +28,14 @@
 
 <svelte:window on:resize={updateTopPosition} />
 
-<div bind:this={target} class={`nav-target ${className}`} {id} style={`--margin-top: 3em; ${style}`}>
+<div bind:this={target} class={`nav-target ${className}`} {id} style={`--ids-nav-margin-top: 3em; ${style}`}>
     <slot></slot>
 </div>
 
 <style>
     .nav-target {
-        margin-top: calc(0px - var(--margin-top));
-        padding-top: var(--margin-top);
+        margin-top: calc(0px - var(--ids-nav-margin-top));
+        padding-top: var(--ids-nav-margin-top);
     }
 
     .nav-target:active {
