@@ -36,13 +36,14 @@
         background: #fff;
     }
     p {
+        font-size: 2em;
         margin-block: 2em;
-        height: 31em;
+        height: 15em;
         background: repeating-linear-gradient(
-                oklch(0.865 0.062 125),
-                oklch(0.865 0.062 125) 1em,
-                oklch(0.865 0.113 280) 1em,
-                oklch(0.865 0.113 280) 1.2em
+                oklch(0.965 0.062 125),
+                oklch(0.965 0.062 125) 1em,
+                oklch(0.965 0.113 280) 1em,
+                oklch(0.965 0.113 280) 1.2em
         );
     }
 </style>

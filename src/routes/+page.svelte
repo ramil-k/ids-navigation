@@ -1,6 +1,8 @@
 <script>
   import NavTarget from "$lib/nav/NavTarget.svelte";
   import Nav       from "$lib/nav/Nav.svelte";
+
+  let show = true;
 </script>
 
 <div class="nav-container">
@@ -18,10 +20,12 @@
 <p></p>
 <p></p>
 <p></p>
-<NavTarget id="nt3" itemtext="пункт 3">
-    <h2>Nav target 3</h2>
-</NavTarget>
-<p></p>
+{#if show}
+    <NavTarget id="nt3" itemtext="пункт 3">
+        <h2>Nav target 3</h2>
+    </NavTarget>
+{/if}
+<p><label> <input type="checkbox" bind:checked={show} >Если переключить чекбокс, то пункт 3 пропадет.</label></p>
 <p></p>
 <p></p>
 <p></p>
@@ -36,13 +40,14 @@
         background: #fff;
     }
     p {
+        font-size: 2em;
         margin-block: 2em;
-        height: 31em;
+        height: 15em;
         background: repeating-linear-gradient(
-                oklch(0.865 0.062 25),
-                oklch(0.865 0.062 25) 1em,
-                oklch(0.865 0.113 280) 1em,
-                oklch(0.865 0.113 280) 1.2em
+                oklch(0.965 0.062 25),
+                oklch(0.965 0.062 25) 1em,
+                oklch(0.965 0.113 280) 1em,
+                oklch(0.965 0.113 280) 1.2em
         );
     }
 </style>

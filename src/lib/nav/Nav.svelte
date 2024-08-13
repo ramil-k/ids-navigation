@@ -1,5 +1,5 @@
 <script context="module">
-  import { writable } from "svelte/store";
+  import {writable} from "svelte/store";
 
   let items = writable([]);
   let current = writable(0);
@@ -23,13 +23,18 @@
       items.filter(i => i.id !== itemId))
 </script>
 <script>
+  import {pushState} from "$app/navigation";
+  import {browser} from '$app/environment';
   import {onMount} from "svelte";
 
   const updateCurrent = () => {
-    let arr = $items.toSorted((i1,  i2) => i1.topPosition - i2.topPosition);
+    if (!browser) {
+      return;
+    }
+    let arr = $items.toSorted((i1, i2) => i1.topPosition - i2.topPosition);
     let highestTopPosition = 0;
     let highestTopPositionIndex = 0;
-    console.log('onscroll', { arr, highestTopPosition, highestTopPositionIndex }, window.scrollY, window.innerHeight )
+    console.log('onscroll', {arr, highestTopPosition, highestTopPositionIndex}, window.scrollY, window.innerHeight)
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].topPosition > highestTopPosition && arr[i].topPosition < window.scrollY + (window.innerHeight / 2)) {
         highestTopPositionIndex = i;
@@ -37,12 +42,17 @@
       }
     }
     current.set(highestTopPositionIndex);
-    console.log('onscroll__res', { arr, highestTopPosition, highestTopPositionIndex } )
   }
-  onMount(updateCurrent)
+  onMount(updateCurrent);
+  items.subscribe(updateCurrent);
+  current.subscribe(current => {
+    if (browser && $items[current]?.id) {
+      pushState(`#${$items[current].id}`, {});
+    }
+  })
 </script>
 
-<svelte:document on:scroll={updateCurrent} />
+<svelte:document on:scroll={updateCurrent}/>
 <ul>
     {#each $items as item, i}
         <li>
@@ -59,13 +69,16 @@
         flex-direction: column;
         gap: 0.5em;
     }
+
     li {
         list-style: none;
     }
+
     a {
         padding: 0.2em;
         border: solid 1px transparent;
     }
+
     a.current {
         border: solid 1px #999;
     }

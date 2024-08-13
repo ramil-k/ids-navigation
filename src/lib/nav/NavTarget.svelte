@@ -12,6 +12,9 @@
   addItem({id, itemtext});
 
   let updateTopPosition = () => {
+    if (!window) {
+      return;
+    }
     let topPosition = target.getBoundingClientRect().top + window.scrollY;
     console.log(topPosition, target.getBoundingClientRect().top, window.scrollY)
     addItem({id, itemtext, topPosition: topPosition});

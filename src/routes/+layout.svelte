@@ -1,11 +1,13 @@
 <script>
-  import { base } from "$app/paths";
+  import { resolveRoute } from "$app/paths";
 </script>
 
 <nav>
     <ul>
-        <li><a href="{base}/">main page</a></li>
-        <li><a href="{base}/page-2">second page</a></li>
+<!--        <li><a href={"/"}>main page</a></li>-->
+<!--        <li><a href={"/page-2/"}>second page</a></li>-->
+        <li><a href={"/ids-navigation/"}>main page</a></li>
+        <li><a href={"/ids-navigation/page-2/"}>second page</a></li>
     </ul>
 </nav>
 <slot></slot>
@@ -13,7 +15,7 @@
 <style>
     nav {
         position: sticky;
-        top: 0;
+        top: 1em;
         width: max-content;
         padding: 0.2em;
         background: #fff;
