@@ -38,8 +38,12 @@
         inherits: true;
         syntax: "<length>";
     }
+    :global(html, body) {
+        scroll-behavior: smooth;
+    }
 
     .nav-target {
+        scroll-margin-top: var(--ids-nav-margin-top, 3em);
         margin-top: calc(0px - var(--ids-nav-margin-top, 3em));
         padding-top: var(--ids-nav-margin-top, 3em);
     }

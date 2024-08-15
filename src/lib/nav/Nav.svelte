@@ -6,7 +6,6 @@
 
   export const addItem = (item) =>
     items.update(items => {
-      console.log('adding', item, 'to', items)
       let i = items.find(i => i.id === item.id);
 
       if (!i) {
@@ -34,22 +33,32 @@
     let arr = $items.toSorted((i1, i2) => i1.topPosition - i2.topPosition);
     let highestTopPosition = 0;
     let highestTopPositionIndex = 0;
-    console.log('onscroll', {arr, highestTopPosition, highestTopPositionIndex}, window.scrollY, window.innerHeight)
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].topPosition > highestTopPosition && arr[i].topPosition < window.scrollY + (window.innerHeight / 2)) {
+      if (
+        arr[i].topPosition > highestTopPosition &&
+        arr[i].topPosition < window.scrollY + (window.innerHeight / 2) &&
+        highestTopPosition < window.scrollY
+      ) {
         highestTopPositionIndex = i;
         highestTopPosition = arr[i].topPosition;
       }
     }
     current.set(highestTopPositionIndex);
   }
-  onMount(updateCurrent);
+  onMount(() => {
+    let unsubscriber = current.subscribe(current => {
+      if (browser && document?.body && $items[current]?.id) {
+        try {
+            pushState(`#${$items[current].id}`, {});
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    })
+    updateCurrent();
+    return unsubscriber;
+  });
   items.subscribe(updateCurrent);
-  current.subscribe(current => {
-    if (browser && $items[current]?.id) {
-      pushState(`#${$items[current].id}`, {});
-    }
-  })
 </script>
 
 <svelte:document on:scroll={updateCurrent}/>
@@ -67,7 +76,8 @@
     ul {
         display: flex;
         flex-direction: column;
-        gap: 0.5em;
+        gap: 1em;
+        padding: 1em 2em;
     }
 
     li {
@@ -75,8 +85,8 @@
     }
 
     a {
-        padding: 0.2em;
-        border: solid 1px transparent;
+        padding: 0.4em;
+        border: solid 0.1em transparent;
     }
 
     a.current {

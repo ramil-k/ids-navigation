@@ -30,6 +30,10 @@
 <p></p>
 <p></p>
 
+<div class="nav-container second">
+    <Nav></Nav>
+</div>
+
 <style>
     .nav-container {
         position: fixed;
@@ -38,6 +42,10 @@
         width: 300px;
         padding: 0.2em;
         background: #fff;
+    }
+    .nav-container.second {
+        top: auto;
+        bottom: 1em;
     }
     p {
         font-size: 2em;
