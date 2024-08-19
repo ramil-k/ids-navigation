@@ -38,6 +38,7 @@
         inherits: true;
         syntax: "<length>";
     }
+
     :global(html, body) {
         scroll-behavior: smooth;
     }
