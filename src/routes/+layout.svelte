@@ -1,15 +1,12 @@
 <script>
-  import { resolveRoute } from "$app/paths";
+  import { base } from "$app/paths";
 </script>
 
 <nav>
     <ul>
-        <li><a href={"/"}>main page</a></li>
-        <li><a href={"/page-2/"}>second page</a></li>
-        <li><a href={"/instruction-page/"}>Пример Ids с меню</a></li>
-<!--        <li><a href={"/ids-navigation/"}>main page</a></li>-->
-<!--        <li><a href={"/ids-navigation/page-2/"}>second page</a></li>-->
-<!--        <li><a href={"/ids-navigation/instruction-page/"}>Пример Ids с меню</a></li>-->
+        <li><a href="{base}/">main page</a></li>
+        <li><a href="{base}/page-2">second page</a></li>
+        <li><a href="{base}/instruction-page">Пример Ids с меню</a></li>
     </ul>
 </nav>
 <div class="content">

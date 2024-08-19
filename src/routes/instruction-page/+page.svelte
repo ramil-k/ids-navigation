@@ -280,6 +280,9 @@
     </div>
 </div>
 
+<footer>
+    <h1>Это футер</h1>
+</footer>
 <div class="nav-container">
     <Nav></Nav>
 </div>
@@ -294,5 +297,16 @@
         background: #fff;
         border-radius: 20px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1), 0 0 20px rgba(0,0,0,0.1), 0 0 40px rgba(0,0,0,0.1);
+    }
+    footer {
+        font-size: 2em;
+        margin-block: 2em;
+        height: 15em;
+        background: repeating-linear-gradient(
+                oklch(0.965 0.062 25),
+                oklch(0.965 0.062 25) 1em,
+                oklch(0.965 0.113 280) 1em,
+                oklch(0.965 0.113 280) 1.2em
+        );
     }
 </style>
